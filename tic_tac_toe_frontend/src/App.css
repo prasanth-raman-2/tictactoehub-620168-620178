@@ -21,6 +21,20 @@
   --button-text: #ffffff;
 }
 
+/* ROOT THEME + OVERRIDES */
+:root {
+  --primary: #3949AB;
+  --secondary: #FBC02D;
+  --accent: #E64A19;
+  --bg-primary: #fff;
+  --bg-secondary: #f7f8fa;
+  --text-primary: #1a1a1a;
+  --text-secondary: #7a7a7a;
+  --border-color: #e7e7ef;
+  --board-bg: #f7f7ff;
+  --win-bg: #e5fbea;
+}
+
 .App {
   text-align: center;
   background-color: var(--bg-primary);
@@ -28,6 +42,211 @@
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Layout Containers */
+.ttt-container {
+  max-width: 380px;
+  margin: 52px auto;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  box-shadow: 0 4px 28px rgba(44,68,85,0.10), 0 1.5px 8px rgba(62,62,82,0.03);
+  padding: 32px 22px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ttt-status, .ttt-gameover {
+  margin-bottom: 22px;
+  font-size: 1.15em;
+  font-weight: 500;
+  min-height: 26px;
+  color: var(--primary);
+}
+.ttt-gameover {
+  color: var(--accent);
+}
+
+/* Auth/Nickname Form */
+.ttt-auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ttt-input {
+  padding: 12px 14px;
+  border: 1.2px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: border 0.2s;
+  margin-bottom: 0.6em;
+}
+.ttt-input:focus {
+  border: 1.3px solid var(--primary);
+}
+
+.ttt-btn, .ttt-btn-sm {
+  border: none;
+  border-radius: 9px;
+  box-shadow: none;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 11px 20px;
+  margin: 0.2em 0.08em;
+  background: var(--primary);
+  color: #fff;
+  transition: background 0.18s, color 0.18s, opacity 0.15s, border 0.15s;
+}
+.ttt-btn:hover, .ttt-btn:focus {
+  opacity: 0.93;
+}
+.ttt-btn-accent { background: var(--accent); color: #fff; }
+.ttt-btn-secondary { background: var(--secondary); color: var(--primary); }
+.ttt-btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1.3px solid var(--primary);
+}
+.ttt-btn-join { background: var(--primary); color: #fff; }
+.ttt-btn-sm { padding: 7px 10px; font-size: 0.96em; }
+
+.ttt-join-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+/* Lobby */
+.ttt-lobby {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.ttt-lobby-title {
+  font-size: 1.16em;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  margin-top: 18px;
+}
+.ttt-game-list {
+  background: #fafbfe;
+  border-radius: 7px;
+  border: 1.2px solid var(--border-color);
+  padding: 8px 7px 3px 7px;
+  margin-top: 5px;
+  min-height: 38px;
+}
+.ttt-empty-list {
+  font-size: 0.97em;
+  color: var(--text-secondary);
+  margin: 8px 0;
+}
+.ttt-game-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 0.99em;
+}
+.ttt-game-id {
+  color: var(--primary);
+  font-size: 0.97em;
+  width: 60px;
+  text-align: left;
+  font-weight: 500;
+}
+.ttt-player-x, .ttt-player-o {
+  font-size: 0.96em;
+  color: var(--accent);
+  min-width: 80px;
+  text-align: left;
+}
+.ttt-player-o { color: var(--secondary); }
+
+/* Game Board */
+.ttt-board-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+}
+.ttt-board {
+  width: 246px;
+  height: 246px;
+  background: var(--board-bg);
+  border-radius: 13px;
+  box-shadow: 0 1px 7px rgba(70,70,90,0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1.3px solid var(--border-color);
+  user-select: none;
+}
+.ttt-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 33.333%;
+}
+.ttt-cell {
+  width: 82px;
+  height: 82px;
+  font-size: 2.35rem;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: var(--primary);
+  background: transparent;
+  border: 1.3px solid var(--border-color);
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.17s, border 0.12s, color 0.19s;
+  outline: none;
+}
+.ttt-cell:disabled {
+  background: #f2f4f6;
+  color: #a5a5bb;
+  cursor: default;
+  opacity: 0.79;
+}
+.ttt-cell:last-child { border-right: none; }
+.ttt-row:last-child .ttt-cell { border-bottom: none; }
+.ttt-x { color: var(--primary); }
+.ttt-o { color: var(--secondary); }
+.ttt-win { background: var(--win-bg) !important; }
+
+.ttt-action-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 9px;
+}
+.ttt-symbol-indicator {
+  margin-left: 8px;
+  font-size: 1.01em;
+  color: var(--primary);
+  opacity: 0.97;
+}
+
+.ttt-footer {
+  margin-top: 25px;
+  padding-top: 5px;
+  font-size: 0.98em;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 450px) {
+  .ttt-container { max-width: 100vw; padding: 12px 2vw 14vw 2vw;}
+  .ttt-board { width: 190px; height: 190px;}
+  .ttt-cell { width: 62px; height: 62px; font-size: 1.5rem; }
+  .ttt-action-row { flex-direction: column; gap: 4px; }
+}
+
 
 .App-logo {
   height: 40vmin;
